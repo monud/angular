@@ -1,24 +1,22 @@
-angular.module('projeto', 
-    ['ngResource','ngRoute', 'ngAnimate', 'ngCookies', 'Picture', 'Panel', 'FotoService'])
-    .config(function($routeProvider, $locationProvider) {
+angular.module('alurapic',['minhasDiretivas', 'ngAnimate','ngRoute', 'meusServicos'])
+.config(function($routeProvider,$locationProvider){
+      $locationProvider.html5Mode(true);
 
-        $locationProvider.html5Mode(true);
+      $routeProvider.when('/fts', {
+        templateUrl : 'partials/principal.html',
+        controller : 'FotosController'
+      });
 
-        $routeProvider.when('/fotos', {
-            templateUrl: 'partials/principal.html',
-            controller: 'PrincipalController'
-        });
+      $routeProvider.when('/fts/new', {
+        templateUrl : 'partials/mantem-foto.html',
+        controller : 'FotonovaController'
+      });
 
-        $routeProvider.when('/fotos/new', {
-            templateUrl: 'partials/foto.html',
-            controller: 'FotoController'
-        });
+      $routeProvider.when('/fts/edit/:fotoId', {
+        templateUrl : 'partials/mantem-foto.html',
+        controller : 'FotonovaController'
+      });
 
-        $routeProvider.when('/fotos/edit/:fotoId', {
-            templateUrl: 'partials/foto.html',
-            controller: 'FotoController'
-        });
+      $routeProvider.otherwise({ redirectTo : '/fts'})
 
-        $routeProvider.otherwise({redirectTo: '/fotos'});
-
-    });
+});
